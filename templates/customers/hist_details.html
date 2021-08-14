@@ -1,0 +1,83 @@
+{% extends 'customers/home.html' %}
+{% block head %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+{% endblock head %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <table class="col-xs-7 table-bordered table-striped table-condensed table-fixed">
+            <thead>
+                <tr>
+                    
+                    <th class="col">From</th>
+                    <th class="col">To</th>
+                    <th class="col">Amount</th>
+		            <th class="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for hist in hists %}
+                
+                <tr>
+                    
+                    <td class="col" >{{ hist.From }}</td>
+                    <td class="col" >{{ hist.To }}</td>
+                    <td class="col" >{{ hist.amount }}</td>
+		    <td class="col" >{{ hist.timestamp }}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
+{% block styles %}
+<style>
+    .table-fixed {
+        margin-left: 25rem;
+        margin-top: 10rem;
+    }
+
+    .table-fixed thead,
+    .table-fixed thead>th {
+        background: #4d7275;
+        color: #fff;
+    }
+
+    .table-fixed tbody tr td {
+        background: #fff;
+    }
+
+    .table-fixed>thead>tr>th {
+        border: 0 !important;
+    }
+
+    .table-fixed>tbody>tr>td:last-child {
+        border-right: 0;
+    }
+
+    .table-fixed tbody td,
+    .table-fixed thead>tr>th {
+        float: left;
+        font-size: 14px;
+        padding-left: 10px !important;
+    }
+
+    .table-fixed .col {
+        width: 25%;
+    }
+
+    .table-fixed tbody {
+        display: block;
+        height: 300px;
+        overflow-y: auto;
+    }
+
+    .table-fixed tr {
+        display: block;
+    }
+</style>
+{% endblock styles %}
