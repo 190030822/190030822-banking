@@ -1,0 +1,102 @@
+{% load static %}
+
+<! DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" href="{% static 'loans.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <title>Loan Applications</title>
+</head>
+<body>
+
+    <div class="navbar">
+	<a href="/logouthome">Home</a>
+	<a href="{% url 'logoutabout' %}">About</a>
+    <div class="dropdown">
+    <button class="dropbtn">Banking
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="{% url 'transactions:status' %}">My Account</a>
+      <a href="{% url 'transactions:transfer' %}">Make Transaction</a>
+      <a href="{% url 'transactions:report' %}">My Transactions</a>
+    </div>
+  </div>
+        <div class="dropdown">
+    <button class="dropbtn">Finance
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="{% url 'finance:loans' %}">My Loans</a>
+      <a href="{% url 'finance:loanform' %}">Apply for a Loan</a>
+    </div>
+  </div>
+
+    <a href="{% url 'logoutteam' %}">Our Team</a>
+	<a href="{% url 'userlogout' %}" class="right">Logout</a>
+  </div>
+
+     <h1>IP Loan Service</h1>
+
+    <table class="data1">
+        <thead class="datahead1">
+        <tr class="headrow1">
+            <th >Loan Type</th>
+            <th >Intrest(%)</th>
+            <th >MaximumLoan</th>
+
+        </tr>
+        </thead>
+        <tbody class="databody1">
+        <tr class="bodyrow1">
+            <td > Home Loan </td>
+            <td > 7.0 </td>
+            <td > 15,00,000 </td>
+        </tr>
+        <tr class="bodyrow2">
+            <td > Gold Loan </td>
+            <td > 6.5 </td>
+            <td > 5,00,000 </td>
+        </tr>
+        <tr class="bodyrow3">
+            <td > Education Loan </td>
+            <td > 6.8 </td>
+            <td > 10,00,000 </td>
+        </tr>
+        <tr class="bodyrow4">
+            <td > Car Loan </td>
+            <td > 6.2 </td>
+            <td >  8,00,000 </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h1 class="one">Your Applications</h1>
+    <table class="data" >
+        <thead class="datahead">
+        <tr class="headrow">
+            <th >Loan Type</th>
+            <th >Amount</th>
+            <th >Intrest</th>
+            <th >Status</th>
+        </tr>
+        </thead>
+        <tbody class="databody">
+        {% for loan in object_list %}
+        <tr class="bodyrow">
+            <td >{{ loan.loan_required_for }}</td>
+            <td >{{ loan.desired_loan_amount }}</td>
+            <td >{{ loan.intrest }}</td>
+            <td > {{ loan.status }}</td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+</body>
+</html>
